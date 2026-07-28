@@ -26,7 +26,6 @@
 
 Каждое сообщение автоматически переключается каждые 2 секунды.
 
-Подробнее в [LOADING_SCREEN_GUIDE.md](LOADING_SCREEN_GUIDE.md) и [CUSTOM_LOADING_IMPLEMENTATION.md](CUSTOM_LOADING_IMPLEMENTATION.md)
 
 ## 📋 Установка и разработка
 
@@ -77,13 +76,6 @@ ProjectBunkers/
 - **Forge**: NeoForge 21.1.233
 - **Версия мода**: 1.0.0
 
-## 📚 Документация
-
-- [ARCHITECTURE.md](ARCHITECTURE.md) - Архитектура мода
-- [ARCHITECTURE_PROJECT_BUNKER.md](ARCHITECTURE_PROJECT_BUNKER.md) - Детальная архитектура
-- [LOADING_SCREEN_GUIDE.md](LOADING_SCREEN_GUIDE.md) - Руководство по кастомной загрузке
-- [CUSTOM_LOADING_IMPLEMENTATION.md](CUSTOM_LOADING_IMPLEMENTATION.md) - Техническая реализация
-- [QUICK_REFERENCE.md](QUICK_REFERENCE.md) - Быстрая справка
 
 ## 🔗 Ресурсы
 
