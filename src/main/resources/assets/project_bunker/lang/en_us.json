@@ -1,0 +1,26 @@
+{
+  "itemGroup.project_bunker.project_bunker_tab": "Project Bunker",
+  
+  "block.project_bunker.bunker_wall": "Bunker Wall",
+  "block.project_bunker.irradiated_soil": "Irradiated Soil", 
+  "block.project_bunker.apocalypse_stone": "Apocalypse Stone",
+  "block.project_bunker.dead_earth_portal": "Dead Earth Portal",
+  
+  "item.project_bunker.hazmat_helmet": "Hazmat Helmet",
+  "item.project_bunker.hazmat_chestplate": "Hazmat Chestplate",
+  "item.project_bunker.hazmat_leggings": "Hazmat Leggings",
+  "item.project_bunker.hazmat_boots": "Hazmat Boots",
+  
+  "entity.project_bunker.mutant_zombie": "Mutant Zombie",
+  "entity.project_bunker.radiation_ghoul": "Radiation Ghoul",
+  
+  "biome.project_bunker.irradiated_wasteland": "Irradiated Wasteland",
+  "dimension.project_bunker.dead_earth": "Dead Earth",
+  
+  "death.attack.project_bunker.radiation": "%1$s died from radiation poisoning",
+  
+  "loading.project_bunker.message1": "Infection spreading...",
+  "loading.project_bunker.message2": "Awakening dark forces...",
+  "loading.project_bunker.message3": "Initializing infected world...",
+  "loading.project_bunker.message4": "Loading..."
+}

@@ -1,0 +1,46 @@
+modLoader="javafml" #mandatory
+
+loaderVersion="${loader_version_range}" #mandatory
+
+license="${mod_license}"
+
+[loading_overlay]
+# Принудительно красим стартовый экран Mojang в глубокий чёрный цвет
+background_color = "#000000"
+# Цвет полосы загрузки делаем ярко-зелёным под терминал
+progress_bar_color = "#00FF00"
+# Цвет рамки прогресс-бара
+progress_frame_color = "#00AA00"
+
+
+[[mods]] #mandatory
+# ИСПРАВЛЕНО: Прописали ваш реальный ID текстом. Ошибки "not declared" полностью исчезнут!
+modId="project_bunker" #mandatory
+
+version="${mod_version}" #mandatory
+
+displayName="${mod_name}" #mandatory
+
+
+description='''
+Example mod description.
+'''
+
+# ИСПРАВЛЕНО: Имя зависимости теперь строго совпадает с объявленным выше modId
+[[dependencies.project_bunker]] #optional
+modId="neoforge" #mandatory
+type="required" #mandatory
+versionRange="[${neo_version},)" #mandatory
+ordering="NONE"
+side="BOTH"
+
+# ИСПРАВЛЕНО: Имя зависимости теперь строго совпадает с объявленным выше modId
+[[dependencies.project_bunker]]
+modId="minecraft"
+type="required"
+versionRange="${minecraft_version_range}"
+ordering="NONE"
+side="BOTH"
+
+[[mixins]]
+config = "project_bunker.mixins.json"

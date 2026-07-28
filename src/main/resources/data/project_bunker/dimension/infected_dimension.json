@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:overworld",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "layers": [
+        {
+          "block": "minecraft:bedrock",
+          "height": 1
+        },
+        {
+          "block": "project_bunker:infected_stone",
+          "height": 100
+        },
+        {
+          "block": "project_bunker:infected_dirt",
+          "height": 15
+        }
+      ],
+      "biome": "project_bunker:infected_wasteland",
+      "structure_overrides": [],
+      "features": false
+    }
+  }
+}

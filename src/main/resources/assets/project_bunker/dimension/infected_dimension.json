@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:overworld",
+  "generator": {
+    "type": "minecraft:noise",
+    "settings": "project_bunker:infected_dimension_noise",
+    "biome_source": {
+      "type": "minecraft:fixed",
+      "biome": "project_bunker:infected_wasteland"
+    }
+  }
+}

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 3840 2160" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background: Deep bunker black -->
+  <rect width="3840" height="2160" fill="#0a0a0a"/>
+  
+  <!-- Dark gray base layer -->
+  <rect width="3840" height="2160" fill="#1a1a2e" opacity="0.8"/>
+  
+  <!-- Concrete texture pattern -->
+  <defs>
+    <pattern id="concrete" patternUnits="userSpaceOnUse" width="200" height="200">
+      <rect width="200" height="200" fill="#2a2a3e"/>
+      <circle cx="50" cy="50" r="3" fill="#1a1a2e" opacity="0.3"/>
+      <circle cx="150" cy="100" r="2" fill="#1a1a2e" opacity="0.4"/>
+      <circle cx="100" cy="150" r="4" fill="#1a1a2e" opacity="0.2"/>
+      <line x1="0" y1="100" x2="200" y2="100" stroke="#2a3a4e" stroke-width="1" opacity="0.1"/>
+    </pattern>
+    
+    <!-- Toxic glow -->
+    <radialGradient id="toxicGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#00ff41;stop-opacity:0.2"/>
+      <stop offset="100%" style="stop-color:#00ff41;stop-opacity:0"/>
+    </radialGradient>
+    
+    <!-- Infection spread effect -->
+    <filter id="blur">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3"/>
+    </filter>
+  </defs>
+  
+  <!-- Concrete base -->
+  <rect width="3840" height="2160" fill="url(#concrete)"/>
+  
+  <!-- Bunker hallway perspective lines -->
+  <g opacity="0.15" stroke="#00ff41" stroke-width="2">
+    <!-- Left perspective line -->
+    <line x1="500" y1="0" x2="1000" y2="2160"/>
+    <!-- Right perspective line -->
+    <line x1="3340" y1="0" x2="2840" y2="2160"/>
+    <!-- Center horizon line -->
+    <line x1="0" y1="1080" x2="3840" y2="1080" stroke-width="1"/>
+  </g>
+  
+  <!-- Horizontal level markers -->
+  <g opacity="0.1" stroke="#2a3a4e" stroke-width="1">
+    <line x1="0" y1="400" x2="3840" y2="400"/>
+    <line x1="0" y1="800" x2="3840" y2="800"/>
+    <line x1="0" y1="1200" x2="3840" y2="1200"/>
+    <line x1="0" y1="1600" x2="3840" y2="1600"/>
+    <line x1="0" y1="2000" x2="3840" y2="2000"/>
+  </g>
+  
+  <!-- Blast door elements - left -->
+  <g opacity="0.15">
+    <rect x="100" y="400" width="600" height="1360" fill="none" stroke="#8b4513" stroke-width="8"/>
+    <rect x="120" y="420" width="560" height="100" fill="#1a1a2e" stroke="#8b4513" stroke-width="2"/>
+    <text x="150" y="500" font-family="monospace" font-size="60" fill="#8b4513" opacity="0.3">BLAST DOOR</text>
+  </g>
+  
+  <!-- Blast door elements - right -->
+  <g opacity="0.15">
+    <rect x="3140" y="400" width="600" height="1360" fill="none" stroke="#8b4513" stroke-width="8"/>
+    <rect x="3160" y="420" width="560" height="100" fill="#1a1a2e" stroke="#8b4513" stroke-width="2"/>
+    <text x="3200" y="500" font-family="monospace" font-size="60" fill="#8b4513" opacity="0.3">SECTOR 7</text>
+  </g>
+  
+  <!-- Infection spread - bio-hazard growth patterns -->
+  <g opacity="0.25" filter="url(#blur)">
+    <!-- Top-left contamination -->
+    <circle cx="300" cy="300" r="150" fill="#00ff41"/>
+    <circle cx="400" cy="250" r="100" fill="#00ff41"/>
+    <circle cx="200" cy="400" r="80" fill="#00ff41"/>
+    
+    <!-- Top-right contamination -->
+    <circle cx="3540" cy="350" r="180" fill="#ff0000"/>
+    <circle cx="3650" cy="250" r="120" fill="#ff0000"/>
+    <circle cx="3440" cy="450" r="100" fill="#ff0000"/>
+    
+    <!-- Bottom spread -->
+    <circle cx="1920" cy="2000" r="200" fill="#00ff41"/>
+    <circle cx="2100" cy="1900" r="140" fill="#00ff41"/>
+    <circle cx="1800" cy="2100" r="110" fill="#ff0000"/>
+  </g>
+  
+  <!-- Toxic glow overlays -->
+  <circle cx="400" cy="400" r="300" fill="url(#toxicGlow)"/>
+  <circle cx="3440" cy="500" r="350" fill="url(#toxicGlow)"/>
+  <circle cx="1920" cy="2050" r="400" fill="url(#toxicGlow)"/>
+  
+  <!-- Flickering light sources (represented as gradients) -->
+  <defs>
+    <radialGradient id="lightGlow1">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0"/>
+    </radialGradient>
+    <radialGradient id="lightGlow2">
+      <stop offset="0%" style="stop-color:#ffcc00;stop-opacity:0.1"/>
+      <stop offset="100%" style="stop-color:#ffcc00;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Industrial lights -->
+  <circle cx="800" cy="300" r="200" fill="url(#lightGlow1)"/>
+  <circle cx="2000" cy="200" r="180" fill="url(#lightGlow1)"/>
+  <circle cx="3040" cy="350" r="200" fill="url(#lightGlow2)"/>
+  <circle cx="1500" cy="1800" r="250" fill="url(#lightGlow1)"/>
+  
+  <!-- Warning stripes (industrial hazard pattern) -->
+  <g opacity="0.08">
+    <rect x="200" y="600" width="1200" height="40" fill="none" stroke="#00ff41" stroke-width="20" stroke-dasharray="40,40"/>
+    <rect x="2400" y="1200" width="1200" height="40" fill="none" stroke="#ff0000" stroke-width="20" stroke-dasharray="40,40"/>
+  </g>
+  
+  <!-- Cracks and damage marks -->
+  <g opacity="0.12" stroke="#2a3a4e" stroke-width="2" fill="none">
+    <!-- Large crack -->
+    <path d="M 500 100 Q 600 400, 450 800 T 700 1400"/>
+    <!-- Small cracks -->
+    <path d="M 3200 600 L 3350 800 L 3150 1000"/>
+    <path d="M 2000 1900 L 2100 2050 L 1950 2100"/>
+  </g>
+  
+  <!-- Vignette effect (dark edges) -->
+  <defs>
+    <radialGradient id="vignette">
+      <stop offset="0%" style="stop-color:#000000;stop-opacity:0"/>
+      <stop offset="70%" style="stop-color:#000000;stop-opacity:0"/>
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:0.5"/>
+    </radialGradient>
+  </defs>
+  <rect width="3840" height="2160" fill="url(#vignette)"/>
+</svg>

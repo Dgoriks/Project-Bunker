@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="circleGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#00ff41;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#00aa22;stop-opacity:0.8"/>
+    </radialGradient>
+    <radialGradient id="redGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#ff3333;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#aa0000;stop-opacity:0.8"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Outer circle frame -->
+  <circle cx="128" cy="128" r="120" fill="none" stroke="#00ff41" stroke-width="3" filter="url(#glow)"/>
+  
+  <!-- Top circle (green) -->
+  <circle cx="128" cy="80" r="50" fill="url(#circleGradient)" filter="url(#glow)"/>
+  
+  <!-- Top circle inner ring -->
+  <circle cx="128" cy="80" r="50" fill="none" stroke="#00ff41" stroke-width="2"/>
+  
+  <!-- Bottom-left circle (red) -->
+  <circle cx="85" cy="155" r="50" fill="url(#redGradient)" filter="url(#glow)"/>
+  
+  <!-- Bottom-left circle inner ring -->
+  <circle cx="85" cy="155" r="50" fill="none" stroke="#ff3333" stroke-width="2"/>
+  
+  <!-- Bottom-right circle (green) -->
+  <circle cx="171" cy="155" r="50" fill="url(#circleGradient)" filter="url(#glow)"/>
+  
+  <!-- Bottom-right circle inner ring -->
+  <circle cx="171" cy="155" r="50" fill="none" stroke="#00ff41" stroke-width="2"/>
+  
+  <!-- Center dot -->
+  <circle cx="128" cy="128" r="18" fill="#ffffff" filter="url(#glow)"/>
+  <circle cx="128" cy="128" r="18" fill="none" stroke="#00ff41" stroke-width="1.5"/>
+  
+  <!-- Connecting lines (trefoil pattern) -->
+  <g stroke="#00ff41" stroke-width="1.5" opacity="0.6">
+    <line x1="128" y1="128" x2="128" y2="80"/>
+    <line x1="128" y1="128" x2="85" y2="155"/>
+    <line x1="128" y1="128" x2="171" y2="155"/>
+  </g>
+  
+  <!-- Infection growth effect -->
+  <g opacity="0.3">
+    <!-- Tendrils around circles -->
+    <path d="M 100 45 Q 90 35, 95 20" stroke="#00ff41" stroke-width="2" fill="none" filter="url(#glow)"/>
+    <path d="M 155 50 Q 170 30, 180 15" stroke="#00ff41" stroke-width="2" fill="none" filter="url(#glow)"/>
+    <path d="M 60 140 Q 40 150, 35 170" stroke="#ff3333" stroke-width="2" fill="none" filter="url(#glow)"/>
+    <path d="M 195 140 Q 215 155, 225 175" stroke="#00ff41" stroke-width="2" fill="none" filter="url(#glow)"/>
+  </g>
+  
+  <!-- Pulsing effect rings (multiple concentric circles for animation) -->
+  <circle cx="128" cy="128" r="110" fill="none" stroke="#00ff41" stroke-width="1" opacity="0.2"/>
+  <circle cx="128" cy="128" r="135" fill="none" stroke="#00ff41" stroke-width="1" opacity="0.1"/>
+</svg>

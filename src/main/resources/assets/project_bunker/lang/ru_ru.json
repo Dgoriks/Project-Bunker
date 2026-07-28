@@ -1,0 +1,26 @@
+{
+  "itemGroup.project_bunker.project_bunker_tab": "Project Bunker",
+  
+  "block.project_bunker.bunker_wall": "Стена Бункера",
+  "block.project_bunker.irradiated_soil": "Радиоактивная Почва", 
+  "block.project_bunker.apocalypse_stone": "Апокалиптический Камень",
+  "block.project_bunker.dead_earth_portal": "Портал в Мёртвую Землю",
+  
+  "item.project_bunker.hazmat_helmet": "Шлем Химзащиты",
+  "item.project_bunker.hazmat_chestplate": "Куртка Химзащиты",
+  "item.project_bunker.hazmat_leggings": "Штаны Химзащиты",
+  "item.project_bunker.hazmat_boots": "Ботинки Химзащиты",
+  
+  "entity.project_bunker.mutant_zombie": "Мутировавший Зомби",
+  "entity.project_bunker.radiation_ghoul": "Радиационное Привидение",
+  
+  "biome.project_bunker.irradiated_wasteland": "Радиоактивная Пустошь",
+  "dimension.project_bunker.dead_earth": "Мёртвая Земля",
+  
+  "death.attack.project_bunker.radiation": "%1$s умер от радиационного отравления",
+  
+  "loading.project_bunker.message1": "Заражение распространяется...",
+  "loading.project_bunker.message2": "Пробуждение тёмных сил...",
+  "loading.project_bunker.message3": "Инициализация заражённого мира...",
+  "loading.project_bunker.message4": "Загрузка..."
+}
