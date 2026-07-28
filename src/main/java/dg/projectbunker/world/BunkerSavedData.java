@@ -13,17 +13,16 @@ import java.util.*;
 public class BunkerSavedData extends SavedData {
 
     private static final String DATA_NAME = "project_bunker_zones";
-
     private final Map<BlockPos, BunkerZone> zones = new HashMap<>();
 
-    public BunkerSavedData() {
-    }
+    public BunkerSavedData() {}
 
     public static SavedData.Factory<BunkerSavedData> factory() {
         return new SavedData.Factory<>(
                 BunkerSavedData::new,
                 BunkerSavedData::load,
-                null);
+                null
+        );
     }
 
     public static BunkerSavedData get(ServerLevel level) {
@@ -45,6 +44,7 @@ public class BunkerSavedData extends SavedData {
         return zones.get(controllerPos);
     }
 
+    /** Проверяет, находится ли позиция внутри любой защищённой зоны (стены + интерьер). */
     public boolean isProtected(BlockPos pos) {
         for (BunkerZone zone : zones.values()) {
             if (zone.contains(pos)) {
@@ -54,13 +54,17 @@ public class BunkerSavedData extends SavedData {
         return false;
     }
 
-    public List<BunkerZone> invalidateWall(BlockPos brokenPos) {
+    /**
+     * Удаляет ВСЕ зоны, где данная позиция является стеной или частью интерьера.
+     * Возвращает список удалённых зон для логирования/уведомлений.
+     */
+    public List<BunkerZone> invalidateZonesAt(BlockPos pos) {
         List<BunkerZone> invalidated = new ArrayList<>();
         List<BlockPos> toRemove = new ArrayList<>();
 
         for (Map.Entry<BlockPos, BunkerZone> entry : zones.entrySet()) {
             BunkerZone zone = entry.getValue();
-            if (zone.isWall(brokenPos) || zone.getInterior().contains(brokenPos)) {
+            if (zone.isWall(pos) || zone.getInterior().contains(pos)) {
                 invalidated.add(zone);
                 toRemove.add(entry.getKey());
             }
@@ -70,7 +74,7 @@ public class BunkerSavedData extends SavedData {
             zones.remove(key);
         }
 
-        if (!invalidated.isEmpty()) {
+        if (!toRemove.isEmpty()) {
             setDirty();
         }
 
@@ -78,15 +82,14 @@ public class BunkerSavedData extends SavedData {
     }
 
     public Collection<BunkerZone> getAllZones() {
-        return zones.values();
+        return Collections.unmodifiableCollection(zones.values());
     }
 
     public static BunkerSavedData load(CompoundTag tag, HolderLookup.Provider registries) {
         BunkerSavedData data = new BunkerSavedData();
         ListTag list = tag.getList("Zones", Tag.TAG_COMPOUND);
         for (int i = 0; i < list.size(); i++) {
-            CompoundTag zoneTag = list.getCompound(i);
-            BunkerZone zone = BunkerZone.load(zoneTag);
+            BunkerZone zone = BunkerZone.load(list.getCompound(i));
             data.zones.put(zone.getControllerPos(), zone);
         }
         return data;
