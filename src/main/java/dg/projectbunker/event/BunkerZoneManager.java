@@ -36,8 +36,8 @@ public class BunkerZoneManager {
     }
 
     /**
-     * ⬇️ ВЫЗЫВАЙ ИЗ БЛОКА ШЛЮЗА ПРИ ЗАКРЫТИИ
-     * Сканирует пространство за шлюзом и создаёт/обновляет зону.
+     * Вызывай из блока шлюза ПРИ ЗАКРЫТИИ.
+     * Удаляет старую зону этого шлюза и создаёт новую через BFS-скан.
      */
     public static void onGateClosed(Level level, BlockPos controllerPos, Direction facing) {
         if (!(level instanceof ServerLevel serverLevel)) return;
@@ -52,7 +52,7 @@ public class BunkerZoneManager {
     }
 
     /**
-     * ⬇️ ВЫЗЫВАЙ ИЗ БЛОКА ШЛЮЗА ПРИ ОТКРЫТИИ
+     * Вызывай из блока шлюза ПРИ ОТКРЫТИИ.
      * Удаляет зону этого шлюза и пересканирует соседние закрытые шлюзы.
      */
     public static void onGateOpened(Level level, BlockPos openedGatePos) {
@@ -78,7 +78,6 @@ public class BunkerZoneManager {
             );
         }
 
-        // Пересчитываем соседние шлюзы: вдруг теперь зона больше/меньше
         rescanNearbyGates(serverLevel, brokenPos);
     }
 
