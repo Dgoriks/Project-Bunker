@@ -1,7 +1,6 @@
 package dg.projectbunker.data;
 
 import com.mojang.serialization.MapCodec;
-import dg.projectbunker.event.BunkerZoneManager;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -92,9 +91,6 @@ public class BunkerInternalGateBlock extends HorizontalDirectionalBlock {
                     }
                 }
             }
-
-            // Закрытый шлюз установлен — сканируем герметичность
-            BunkerZoneManager.onGateClosed(level, pos, facing);
         }
     }
 
@@ -115,8 +111,6 @@ public class BunkerInternalGateBlock extends HorizontalDirectionalBlock {
                     }
                 }
             }
-            // Удаление шлюза = открытие зоны
-            BunkerZoneManager.onGateOpened(level, pos);
         }
         super.onRemove(state, level, pos, newState, isMoving);
     }
@@ -149,16 +143,12 @@ public class BunkerInternalGateBlock extends HorizontalDirectionalBlock {
             level.playSound(null, pos, sound, net.minecraft.sounds.SoundSource.BLOCKS, 1.0F, pitch);
 
             if (!nextOpenState) {
-                // Закрываем — создаём/обновляем зону
-                BunkerZoneManager.onGateClosed(level, pos, facing);
                 player.displayClientMessage(
-                        Component.literal("Внутренний шлюз заблокирован. Сектора изолированы.")
+                        Component.literal("Внутренний шлюз закрыт.")
                                 .withStyle(ChatFormatting.AQUA), true);
             } else {
-                // Открываем — удаляем зону и пересканируем соседей
-                BunkerZoneManager.onGateOpened(level, pos);
                 player.displayClientMessage(
-                        Component.literal("Внутренний шлюз открыт: сектора объединены.")
+                        Component.literal("Внутренний шлюз открыт.")
                                 .withStyle(ChatFormatting.YELLOW), true);
             }
         }

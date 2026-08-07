@@ -1,7 +1,6 @@
 package dg.projectbunker.data;
 
 import com.mojang.serialization.MapCodec;
-import dg.projectbunker.event.BunkerZoneManager;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -93,13 +92,10 @@ public class BunkerGateBlock extends HorizontalDirectionalBlock {
                 }
             }
 
-            // Закрытый шлюз установлен — сканируем герметичность
-            BunkerZoneManager.onGateClosed(level, pos, facing);
-
             if (placer instanceof Player player) {
                 player.displayClientMessage(
-                        Component.literal("Герметизация отсека проверена. Сектор защищён.")
-                                .withStyle(ChatFormatting.GREEN, ChatFormatting.BOLD), true);
+                        Component.literal("Внешний шлюз установлен.")
+                                .withStyle(ChatFormatting.GREEN), true);
             }
         }
     }
@@ -121,8 +117,6 @@ public class BunkerGateBlock extends HorizontalDirectionalBlock {
                     }
                 }
             }
-            // Удаление шлюза = открытие зоны
-            BunkerZoneManager.onGateOpened(level, pos);
         }
         super.onRemove(state, level, pos, newState, isMoving);
     }
@@ -155,16 +149,12 @@ public class BunkerGateBlock extends HorizontalDirectionalBlock {
             level.playSound(null, pos, sound, net.minecraft.sounds.SoundSource.BLOCKS, 1.0F, pitch);
 
             if (!nextOpenState) {
-                // Закрываем — создаём/обновляем зону
-                BunkerZoneManager.onGateClosed(level, pos, facing);
                 player.displayClientMessage(
-                        Component.literal("Герметизация отсека успешна! Сектор защищён.")
-                                .withStyle(ChatFormatting.GREEN, ChatFormatting.BOLD), true);
+                        Component.literal("Шлюз закрыт.")
+                                .withStyle(ChatFormatting.GREEN), true);
             } else {
-                // Открываем — удаляем зону и пересканируем соседей
-                BunkerZoneManager.onGateOpened(level, pos);
                 player.displayClientMessage(
-                        Component.literal("Шлюз открыт. Внимание, угроза радиационного заражения!")
+                        Component.literal("Шлюз открыт.")
                                 .withStyle(ChatFormatting.YELLOW), true);
             }
         }

@@ -32,7 +32,7 @@ public class RadiationManager {
 
         if (level.isClientSide()) return;
 
-        // Если игрок НЕ в заражённом измерении — радиация не действует вообще
+        // Не в заражённом измерении — радиации нет
         if (!level.dimension().equals(INFECTED_DIMENSION)) {
             if (player.hasEffect(ModEffects.RADIATION)) {
                 player.removeEffect(ModEffects.RADIATION);
@@ -40,7 +40,7 @@ public class RadiationManager {
             return;
         }
 
-        // 1. ПРОВЕРКА БУНКЕРА: если внутри герметичного сектора — полная защита
+        // 1. Проверка бункера — простой BFS, никаких зон
         if (BunkerZoneManager.isPlayerSafe(player)) {
             if (player.hasEffect(ModEffects.RADIATION)) {
                 player.removeEffect(ModEffects.RADIATION);
@@ -48,7 +48,7 @@ public class RadiationManager {
             return;
         }
 
-        // 2. ПРОВЕРКА HAZMAT
+        // 2. Проверка HAZMAT
         boolean hasHelmet = player.getItemBySlot(EquipmentSlot.HEAD).is(ModItems.HAZMAT_HELMET.get());
         boolean hasChest = player.getItemBySlot(EquipmentSlot.CHEST).is(ModItems.HAZMAT_CHESTPLATE.get());
         boolean hasLegs = player.getItemBySlot(EquipmentSlot.LEGS).is(ModItems.HAZMAT_LEGGINGS.get());
@@ -87,7 +87,7 @@ public class RadiationManager {
             }
         }
 
-        // 3. НЕТ ЗАЩИТЫ — накладываем/усиливаем радиацию
+        // 3. Нет защиты — радиация
         if (!player.hasEffect(ModEffects.RADIATION)) {
             player.addEffect(new MobEffectInstance(ModEffects.RADIATION, 40, 0, false, false, true));
         } else {

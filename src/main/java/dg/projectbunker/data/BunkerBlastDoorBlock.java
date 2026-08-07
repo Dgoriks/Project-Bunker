@@ -1,7 +1,6 @@
 package dg.projectbunker.data;
 
 import com.mojang.serialization.MapCodec;
-import dg.projectbunker.event.BunkerZoneManager;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -76,16 +75,10 @@ public class BunkerBlastDoorBlock extends HorizontalDirectionalBlock {
                 level.setBlock(abovePos, state.setValue(HALF, DoubleBlockHalf.UPPER), 3);
             }
 
-            BlockPos checkPos = state.getValue(HALF) == DoubleBlockHalf.LOWER ? pos : pos.below();
-            Direction facing = state.getValue(FACING);
-
-            // Закрытый шлюз установлен — сканируем герметичность
-            BunkerZoneManager.onGateClosed(level, checkPos, facing);
-
             if (placer instanceof Player player) {
                 player.displayClientMessage(
-                        Component.literal("Герметизация отсека проверена. Сектор защищён.")
-                                .withStyle(ChatFormatting.GREEN, ChatFormatting.BOLD), true);
+                        Component.literal("Гермодверь установлена.")
+                                .withStyle(ChatFormatting.GREEN), true);
             }
         }
     }
@@ -115,10 +108,6 @@ public class BunkerBlastDoorBlock extends HorizontalDirectionalBlock {
             if (level.getBlockState(otherHalfPos).is(this)) {
                 level.setBlock(otherHalfPos, Blocks.AIR.defaultBlockState(), 3);
             }
-
-            BlockPos masterPos = half == DoubleBlockHalf.LOWER ? pos : pos.below();
-            // Удаление шлюза = открытие зоны
-            BunkerZoneManager.onGateOpened(level, masterPos);
         }
         super.onRemove(state, level, pos, newState, isMoving);
     }
@@ -151,16 +140,12 @@ public class BunkerBlastDoorBlock extends HorizontalDirectionalBlock {
             level.playSound(null, pos, sound, net.minecraft.sounds.SoundSource.BLOCKS, 1.0F, pitch);
 
             if (!nextOpenState) {
-                // Закрываем — создаём/обновляем зону
-                BunkerZoneManager.onGateClosed(level, masterPos, facing);
                 player.displayClientMessage(
-                        Component.literal("Герметизация отсека успешна! Сектор защищён.")
-                                .withStyle(ChatFormatting.GREEN, ChatFormatting.BOLD), true);
+                        Component.literal("Гермодверь закрыта.")
+                                .withStyle(ChatFormatting.GREEN), true);
             } else {
-                // Открываем — удаляем зону и пересканируем соседей
-                BunkerZoneManager.onGateOpened(level, masterPos);
                 player.displayClientMessage(
-                        Component.literal("Шлюз открыт. Внимание, угроза радиационного заражения!")
+                        Component.literal("Гермодверь открыта.")
                                 .withStyle(ChatFormatting.YELLOW), true);
             }
         }
